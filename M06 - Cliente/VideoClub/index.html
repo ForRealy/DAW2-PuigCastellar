@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Videoclub</title>
+        <!-- Enlace a Materialize CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script src="./dist/index.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body onload="charge()">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Videoclub</h1>          
+            </div>
+
+            <!-- Clients Section -->
+            <div id="clients" class="section"></div>
+
+            <!-- Reserva Section -->
+            <div class="input-field">
+                <input type="text" id="storage" class="validate" placeholder="Añade tu producto">
+                <label for="storage">Añada un producto</label>
+                <button onclick="getStorage()" id="storageB" class="btn-large btn-primary w-full">Añadir Producto</button>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="btn-group">
+                <button id="ButtonF" class="btn btn-info">Películas</button>
+                <button id="ButtonG" class="btn btn-info selected" >Videojuegos</button>
+                <button id="ButtonB" class="btn btn-info">Ambos</button>
+            </div>
+
+            <!-- Products Section -->
+            <div id="products" class="products-section"></div>
+        </div>
+
+     </body>
+</html>

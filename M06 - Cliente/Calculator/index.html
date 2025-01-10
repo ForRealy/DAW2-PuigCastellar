@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link rel="stylesheet" href="./style.css" id="style">
+    
+</head>
+<body>
+  <div class="calculadora">
+    <input id="show" type="text" class="pantalla" value="" readonly>
+    
+    <div class="checkbox-wrapper-2">
+      <input id="binary" type="checkbox" name="decimal" class="sc-gJwTLC ikxBAC">
+      <label for="">Binary</label>
+      <input id="hexa" type="checkbox" name="decimal" class="sc-gJwTLC ikxBAC">
+      <label for="">Hexa</label>
+      <label class="left">
+        Themes
+        <input type="radio" name="theme" value="index" id="default" checked>
+        <input type="radio" name="theme" value="pink" id="pink">
+        <input type="radio" name="theme" value="purple" id="purple">
+      </label>
+    </div>
+    
+    <div class="botones">
+      <button type="button" onclick="cl()" class="boton">C</button>        
+      <button type="button"  class="boton">(</button>
+      <button type="button"  class="boton">)</button>
+      <button type="button"  class="boton">mod</button>
+      <button type="button"  class="boton">π</button>
+      
+      <button type="button" onclick="setValue(7)" class="boton boton-num">7</button>
+      <button type="button" onclick="setValue(8)" class="boton boton-num">8</button>
+      <button type="button" onclick="setValue(9)" class="boton boton-num">9</button>
+      <button type="button" onclick="setOperator('/')" class="boton">/</button>
+      <button type="button"  class="boton">√</button>
+      
+      <button type="button" onclick="setValue(4)" class="boton boton-num">4</button>
+      <button type="button" onclick="setValue(5)" class="boton boton-num">5</button>
+      <button type="button" onclick="setValue(6)" class="boton boton-num">6</button>
+      <button type="button" onclick="setOperator('*')" class="boton">x</button>
+      <button type="button"  class="boton">x²</button>
+      
+      <button type="button" onclick="setValue(1)" class="boton boton-num">1</button>
+      <button type="button" onclick="setValue(2)" class="boton boton-num">2</button>
+      <button type="button" onclick="setValue(3)" class="boton boton-num">3</button>
+      <button type="button" onclick="setOperator('-')"class="boton">-</button>
+      <button type="button" onclick="calculate()" class="boton boton-equal boton-igual">=</button>
+       
+      <button type="button" onclick="setValue(0)" class="boton boton-num">0</button>
+      <button type="button" onclick="setOperator('.')" class="boton">.</button>
+      <button type="button"  class="boton">%</button>
+      <button type="button" onclick="setOperator('+')" class="boton">+</button>    
+    </div>
+</div>
+<script src="./built/index.js"></script>
+</body>
+</html>
+
+<!-- TODO make this work 2
+  onclick="setOperator('%')"
+  onclick="setOperator('x^2')"
+  onclick="setOperator('√')"
+  onclick="setOperator('π')"
+  onclick="setOperator('mod')"
+  onclick="setOperator(')')"
+  onclick="setOperator('(')"
+  -->
+  

@@ -1,0 +1,88 @@
+body {
+    background: #f0f4f7;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    background-color: #2196F3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.input-field input {
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.btn-large {
+    border-radius: 50px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    box-shadow: 0 6px 10px rgba(33, 150, 243, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1976D2;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-group .btn {
+    width: 150px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-info {
+    background-color: #26C6DA;
+}
+
+.btn-info:hover {
+    background-color: #00ACC1;
+}
+
+.card {
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #2196F3;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.products-section {
+    margin-top: 50px;
+}

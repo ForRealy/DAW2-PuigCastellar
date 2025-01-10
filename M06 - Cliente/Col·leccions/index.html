@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./dist/index.js"></script>
+</head>
+<body>
+    <!--Apartado categorias-->
+    <label for="categoriaInput">Afegir categoria:</label>
+    <input type="text" id="categoriaInput"><br>
+    
+    <button onclick="afegirCategoria()">Afegir Categoria</button>
+    <button onclick="mostrarCategories()">Mostrar Categories</button><br><br>
+    
+    <!--Apartado Productos-->
+    <label for="productoInput">Afegir Producte:</label>
+    <input type="text" id="productoInput">
+    <label for="productoInput">Afegir Stock:</label>
+    <input type="text" id="stockInput"> <br><br>
+    
+    <button onclick="afegirProducte()">Afegir Producte</button>
+    <button onclick="eliminarProducte()">Eliminar Producte</button>
+    <button onclick="mostrarProducte()">Mostrar Producte</button><br> <br>
+
+    <!--Apartado Ventas-->
+    <label for="vendreProducteInput">Producte a vendre:</label>
+    <input type="text" id="vendreProducteInput" />
+
+    <label for="preuVendaInput">Preu de venda (€):</label>
+    <input type="number" id="preuVendaInput" /><br> 
+
+    <button onclick="vendreProducte()">Vendre</button>
+    <button onclick="mostrarResumVendes()">Mostrar Resum de Vendes</button>
+    <p id="llistaCategories"></p>
+    <p id="llistaProductes"></p>
+    <div id="resumVendes"></div>
+</body>
+</html>
