@@ -1,6 +1,19 @@
 <?PHP
-require_once 'vendor/autoload.php';
-$loader = new \Twig\Loader\FilesystemLoader('views');
-$twig = new \Twig\Environment($loader);
+//Routing Setup
+$request = $_SERVER['REQUEST_URI'];
+$viewDir = '/views/';
 
-echo $twig->render('index.html', ['name' => 'Alejandro']);
+switch ($request) {
+    case '':
+    case '/':
+        require __DIR__ . $viewDir . 'home.php';
+        break;
+
+    case '/admin':
+        require __DIR__ . $viewDir . 'admin.php';
+        break;
+
+    default:
+        http_response_code(404);
+        require __DIR__ . $viewDir . '404.php';
+}
