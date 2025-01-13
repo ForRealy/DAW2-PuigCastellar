@@ -1,60 +1,8 @@
+export { RestaurantX };
+
+import { Client } from './client';
+import { Treballador } from './treballador';
 namespace RestaurantX {
-    // Clase Pare: Persona
-    export class Persona {
-        public nom: string;
-        public cognoms: string;
-
-        constructor(nom: string, cognoms: string) {
-            this.nom = nom;
-            this.cognoms = cognoms;
-        }
-
-        // Mètode comú per mostrar el nom i els cognoms
-        mostrarInformacio(): string {
-            return `${this.nom} ${this.cognoms}`;
-        }
-    }
-
-    // Classe Filla: Client
-    export class Client extends Persona {
-        private comandes: string[];
-
-        constructor(nom: string, cognoms: string) {
-            super(nom, cognoms);  // Crida al constructor de la classe pare
-            this.comandes = [];
-        }
-
-        // Afegir una comanda al client
-        afegirComanda(comanda: string): void {
-            this.comandes.push(comanda);
-        }
-
-        // Mètode per mostrar la informació del client
-        mostrarInformacio(): string {
-            const info = super.mostrarInformacio();  // Obtenir nom i cognoms
-            return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
-        }
-    }
-
-    // Classe Filla: Treballador
-    export class Treballador extends Persona {
-        private dni: string;
-        private torn: string;
-        private càrrec: string;
-
-        constructor(nom: string, cognoms: string, dni: string, torn: string, càrrec: string) {
-            super(nom, cognoms);  // Crida al constructor de la classe pare
-            this.dni = dni;
-            this.torn = torn;
-            this.càrrec = càrrec;
-        }
-
-        // Mètode per mostrar la informació del treballador
-        mostrarInformacio(): string {
-            const info = super.mostrarInformacio();  // Obtenir nom i cognoms
-            return `${info}, DNI: ${this.dni}, Torn: ${this.torn}, Càrrec: ${this.càrrec}`;
-        }
-    }
 
     // Llistes per emmagatzemar els clients i treballadors
     export const clients: Client[] = [];

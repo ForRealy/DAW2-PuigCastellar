@@ -1,50 +1,8 @@
-"use strict";
+export { RestaurantX };
+import { Client } from './client';
+import { Treballador } from './treballador';
 var RestaurantX;
 (function (RestaurantX) {
-    // Clase Pare: Persona
-    class Persona {
-        constructor(nom, cognoms) {
-            this.nom = nom;
-            this.cognoms = cognoms;
-        }
-        // Mètode comú per mostrar el nom i els cognoms
-        mostrarInformacio() {
-            return `${this.nom} ${this.cognoms}`;
-        }
-    }
-    RestaurantX.Persona = Persona;
-    // Classe Filla: Client
-    class Client extends Persona {
-        constructor(nom, cognoms) {
-            super(nom, cognoms); // Crida al constructor de la classe pare
-            this.comandes = [];
-        }
-        // Afegir una comanda al client
-        afegirComanda(comanda) {
-            this.comandes.push(comanda);
-        }
-        // Mètode per mostrar la informació del client
-        mostrarInformacio() {
-            const info = super.mostrarInformacio(); // Obtenir nom i cognoms
-            return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
-        }
-    }
-    RestaurantX.Client = Client;
-    // Classe Filla: Treballador
-    class Treballador extends Persona {
-        constructor(nom, cognoms, dni, torn, càrrec) {
-            super(nom, cognoms); // Crida al constructor de la classe pare
-            this.dni = dni;
-            this.torn = torn;
-            this.càrrec = càrrec;
-        }
-        // Mètode per mostrar la informació del treballador
-        mostrarInformacio() {
-            const info = super.mostrarInformacio(); // Obtenir nom i cognoms
-            return `${info}, DNI: ${this.dni}, Torn: ${this.torn}, Càrrec: ${this.càrrec}`;
-        }
-    }
-    RestaurantX.Treballador = Treballador;
     // Llistes per emmagatzemar els clients i treballadors
     RestaurantX.clients = [];
     RestaurantX.treballadors = [];
