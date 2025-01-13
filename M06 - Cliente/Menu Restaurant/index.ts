@@ -1,148 +1,129 @@
-import { persona } from 'persona.js';
-// Dades inicials
-interface Order {
-    name: string;
-    price: number;
-}
+namespace RestaurantX {
+    // Clase Pare: Persona
+    export class Persona {
+        public nom: string;
+        public cognoms: string;
 
-class Client extends persona{
-    public orders: Order[] = [];
-    constructor(name: string, lastName:string, dni:string) {
-        super(name, lastName, dni);
-        
+        constructor(nom: string, cognoms: string) {
+            this.nom = nom;
+            this.cognoms = cognoms;
+        }
+
+        // Mètode comú per mostrar el nom i els cognoms
+        mostrarInformacio(): string {
+            return `${this.nom} ${this.cognoms}`;
+        }
+    }
+
+    // Classe Filla: Client
+    export class Client extends Persona {
+        private comandes: string[];
+
+        constructor(nom: string, cognoms: string) {
+            super(nom, cognoms);  // Crida al constructor de la classe pare
+            this.comandes = [];
+        }
+
+        // Afegir una comanda al client
+        afegirComanda(comanda: string): void {
+            this.comandes.push(comanda);
+        }
+
+        // Mètode per mostrar la informació del client
+        mostrarInformacio(): string {
+            const info = super.mostrarInformacio();  // Obtenir nom i cognoms
+            return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
+        }
+    }
+
+    // Classe Filla: Treballador
+    export class Treballador extends Persona {
+        private dni: string;
+        private torn: string;
+        private càrrec: string;
+
+        constructor(nom: string, cognoms: string, dni: string, torn: string, càrrec: string) {
+            super(nom, cognoms);  // Crida al constructor de la classe pare
+            this.dni = dni;
+            this.torn = torn;
+            this.càrrec = càrrec;
+        }
+
+        // Mètode per mostrar la informació del treballador
+        mostrarInformacio(): string {
+            const info = super.mostrarInformacio();  // Obtenir nom i cognoms
+            return `${info}, DNI: ${this.dni}, Torn: ${this.torn}, Càrrec: ${this.càrrec}`;
+        }
+    }
+
+    // Llistes per emmagatzemar els clients i treballadors
+    export const clients: Client[] = [];
+    export const treballadors: Treballador[] = [];
+
+    // Afegir un nou client
+    export function addClient() {
+        const clientNom = (<HTMLInputElement>document.getElementById("clientNom")).value.trim();
+        const clientCognoms = (<HTMLInputElement>document.getElementById("clientCognoms")).value.trim();
+
+        if (!clientNom || !clientCognoms) {
+            alert("Introdueix un nom i cognoms vàlids per al client.");
+            return;
+        }
+
+        const client = new Client(clientNom, clientCognoms);
+        clients.push(client);
+        alert(`Client "${clientNom} ${clientCognoms}" afegit correctament.`);
+    }
+
+    // Afegir una nova comanda
+    export function addOrder() {
+        const comandaNom = (<HTMLInputElement>document.getElementById("comandaNom")).value.trim();
+        const comandaPreu = parseFloat((<HTMLInputElement>document.getElementById("comandaPreu")).value);
+
+        if (!comandaNom || isNaN(comandaPreu) || comandaPreu <= 0) {
+            alert("Introdueix una comanda vàlida amb un preu vàlid.");
+            return;
+        }
+
+        const clientNom = (<HTMLInputElement>document.getElementById("assignClient")).value.trim();
+        const client = clients.find(c => c.nom === clientNom);
+
+        if (!client) {
+            alert("El client no existeix.");
+            return;
+        }
+
+        client.afegirComanda(comandaNom);
+        alert(`Comanda "${comandaNom}" afegida a "${clientNom}".`);
+    }
+
+    // Afegir un nou treballador
+    export function addTreballador() {
+        const treballadorNom = (<HTMLInputElement>document.getElementById("treballadorNom")).value.trim();
+        const treballadorCognoms = (<HTMLInputElement>document.getElementById("treballadorCognoms")).value.trim();
+        const treballadorDNI = (<HTMLInputElement>document.getElementById("treballadorDNI")).value.trim();
+        const treballadorTorn = (<HTMLInputElement>document.getElementById("treballadorTorn")).value.trim();
+        const treballadorCàrrec = (<HTMLInputElement>document.getElementById("treballadorCàrrec")).value.trim();
+
+        if (!treballadorNom || !treballadorCognoms || !treballadorDNI || !treballadorTorn || !treballadorCàrrec) {
+            alert("Introdueix totes les dades del treballador.");
+            return;
+        }
+
+        const treballador = new Treballador(treballadorNom, treballadorCognoms, treballadorDNI, treballadorTorn, treballadorCàrrec);
+        treballadors.push(treballador);
+        alert(`Treballador "${treballadorNom} ${treballadorCognoms}" afegit correctament.`);
+    }
+
+    // Mostrar clients
+    export function showClients() {
+        const clientsOutput = document.getElementById("clientsOutput")!;
+        clientsOutput.innerHTML = clients.map(client => `<p>${client.mostrarInformacio()}</p>`).join("");
+    }
+
+    // Mostrar treballadors
+    export function showTreballadors() {
+        const treballadorsOutput = document.getElementById("treballadorsOutput")!;
+        treballadorsOutput.innerHTML = treballadors.map(treballador => `<p>${treballador.mostrarInformacio()}</p>`).join("");
     }
 }
-
-class Treballador extends persona{
-    
-    private torn: boolean;
-    private carrec: string;
-    
-    constructor(name: string, lastName:string, dni:string, torn:boolean, carrec:string) {
-        super(name, lastName, dni);
-        this.torn = torn;
-        this.carrec = carrec;
-    }
-}
-const clients: Client[] = [];
-const treballadors: Treballador[] = [];
-const orders: Order[] = [];
-
-// Afegir un nou client
-function addClient() {
-    const clientNom = (<HTMLInputElement>document.getElementById("clientNom")).value.trim();
-    const clientLastName = (<HTMLInputElement>document.getElementById("clientLastName")).value.trim();
-    const clientDNI = (<HTMLInputElement>document.getElementById("clientDNI")).value.trim();
-
-    if (!clientNom || !clientLastName || !clientDNI) {
-        alert("Rellena todos los datos");
-        return;
-    }
-
-    if (clients.some(client => client.name == clientNom && client.dni == clientDNI)) {
-        alert("El cliente ya existe");
-        return;
-    }
-
-    const newClient = new Client(clientNom, clientLastName, clientDNI);
-    clients.push(newClient);
-    alert(`Cliente "${clientNom}" añadido exitosamente`);
-}
-
-
-// Afegir una nova comanda
-function addOrder() {
-    const comandaNom = (<HTMLInputElement>document.getElementById("comandaNom")).value.trim();
-    const comandaPreu = parseFloat((<HTMLInputElement>document.getElementById("comandaPreu")).value);
-
-    if (!comandaNom || isNaN(comandaPreu) || comandaPreu <= 0) {
-        alert("Introdueix una comanda vàlida amb un preu vàlid.");
-        return;
-    }
-
-    if (orders.some(order => order.name === comandaNom)) {
-        alert("La comanda ja existeix.");
-        return;
-    }
-
-    orders.push({ name: comandaNom, price: comandaPreu });
-    alert(`Comanda "${comandaNom}" afegida correctament.`);
-}
-
-// Assignar una comanda a un client
-function assignOrderToClient() {
-    const assignClient = (<HTMLInputElement>document.getElementById("assignClient")).value.trim();
-    const assignComanda = (<HTMLInputElement>document.getElementById("assignComanda")).value.trim();
-
-    const client = clients.find(c => c.name === assignClient);
-    const order = orders.find(o => o.name === assignComanda);
-
-    if (!client) {
-        alert("El client no existeix.");
-        return;
-    }
-
-    if (!order) {
-        alert("La comanda no existeix.");
-        return;
-    }
-
-    // Afegir la comanda al client
-    if (!client.orders.includes(order)) {
-        client.orders.push(order);
-        alert(`Comanda "${assignComanda}" assignada a "${assignClient}".`);
-    } else {
-        alert(`El client ja té aquesta comanda assignada.`);
-    }
-}
-
- 
-
-
-// Mostrar clients
-function showClients() {
-    const clientsOutput = document.getElementById("clientsOutput")!;
-    if (clients.length === 0) {
-        clientsOutput.innerHTML = `<p>No hi ha clients registrats.</p>`;
-        return;
-    }
-    clientsOutput.innerHTML = `
-        <ul>
-            ${clients.map(client => `<li>${client.name} ${client.lastName} - DNI: ${client.dni}</li>`).join("")}
-        </ul>
-    `;
-}
-
-
-// Mostrar comandes
-function showOrders() {
-    const ordersOutput = document.getElementById("ordersOutput")!;
-    ordersOutput.innerHTML = orders.map(order => `<p>${order.name} - $${order.price.toFixed(2)}</p>`).join("");
-}
-
-// Mostrar comandes d’un client
-function showClientOrders() {
-    const clientName = (<HTMLInputElement>document.getElementById("clientComandes")).value.trim();
-    const clientOrdersOutput = document.getElementById("clientOrdersOutput")!;
-
-    const client = clients.find(c => c.name === clientName);
-
-    if (!client) {
-        clientOrdersOutput.innerHTML = `<p>El client "${clientName}" no existeix.</p>`;
-        return;
-    }
-
-    if (client.orders.length === 0) {
-        clientOrdersOutput.innerHTML = `<p>El client "${clientName}" no té comandes.</p>`;
-        return;
-    }
-
-    clientOrdersOutput.innerHTML = `
-        <h3>Comandes de ${clientName}</h3>
-        <ul>
-            ${client.orders.map(order => `<li>${order.name} - $${order.price.toFixed(2)}</li>`).join("")}
-        </ul>
-    `;
-}
-
- 

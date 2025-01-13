@@ -9,45 +9,46 @@
 <body>
     <h1>Gestió de Clients i Comandes</h1>
 
+    <!-- Sección de añadir cliente -->
     <div class="section">
         <h2>Afegir Client</h2>
         <input type="text" id="clientNom" placeholder="Nom del client">
-        <input type="text" id="clientLastName" placeholder="Cognom del client">
-        <input type="text" id="clientDNI" placeholder="DNI del client">
-        <button onclick="addClient()">Afegir Client</button>
+        <input type="text" id="clientCognoms" placeholder="Cognoms del client">
+        <button onclick="RestaurantX.addClient()">Afegir Client</button>
     </div>
 
+    <!-- Sección de añadir comanda -->
     <div class="section">
         <h2>Afegir Comanda</h2>
         <input type="text" id="comandaNom" placeholder="Nom de la comanda">
         <input type="text" id="comandaPreu" placeholder="Preu de la comanda">
-        <button onclick="addOrder()">Afegir Comanda</button>
-    </div>
-
-    <div class="section">
-        <h2>Assignar Comanda a Client</h2>
         <input type="text" id="assignClient" placeholder="Nom del client">
-        <input type="text" id="assignComanda" placeholder="Nom de la comanda">
-        <button onclick="assignOrderToClient()">Assignar Comanda</button>
+        <button onclick="RestaurantX.addOrder()">Afegir Comanda</button>
     </div>
 
+    <!-- Sección de añadir trabajador -->
+    <div class="section">
+        <h2>Afegir Treballador</h2>
+        <input type="text" id="treballadorNom" placeholder="Nom del treballador">
+        <input type="text" id="treballadorCognoms" placeholder="Cognoms del treballador">
+        <input type="text" id="treballadorDNI" placeholder="DNI del treballador">
+        <input type="text" id="treballadorTorn" placeholder="Torn de treball">
+        <input type="text" id="treballadorCàrrec" placeholder="Càrrec del treballador">
+        <button onclick="RestaurantX.addTreballador()">Afegir Treballador</button>
+    </div>
+
+    <!-- Mostrar clients -->
     <div class="section">
         <h2>Mostrar Clients</h2>
-        <button onclick="showClients()">Mostrar Clients</button>
+        <button onclick="RestaurantX.showClients()">Mostrar Clients</button>
         <div id="clientsOutput"></div>
     </div>
 
+    <!-- Mostrar treballadors -->
     <div class="section">
-        <h2>Mostrar Comandes</h2>
-        <button onclick="showOrders()">Mostrar Comandes</button>
-        <div id="ordersOutput"></div>
-    </div>
-
-    <div class="section">
-        <h2>Mostrar Comandes d’un Client</h2>
-        <input type="text" id="clientComandes" placeholder="Nom del client">
-        <button onclick="showClientOrders()">Mostrar Comandes</button>
-        <div id="clientOrdersOutput"></div>
+        <h2>Mostrar Treballadors</h2>
+        <button onclick="RestaurantX.showTreballadors()">Mostrar Treballadors</button>
+        <div id="treballadorsOutput"></div>
     </div>
 </body>
 </html>
