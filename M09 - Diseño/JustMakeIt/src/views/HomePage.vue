@@ -2,20 +2,21 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Nigger 👨🏿</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
+          <ion-title size="large">Nigger 👨🏿</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <strong>Hello</strong>
+        <p>World</p>
+        <span>🐢</span>
       </div>
     </ion-content>
   </ion-page>
@@ -36,6 +37,9 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue
   transform: translateY(-50%);
 }
 
+#container span {
+  font-size: 5rem;
+}
 #container strong {
   font-size: 20px;
   line-height: 26px;
