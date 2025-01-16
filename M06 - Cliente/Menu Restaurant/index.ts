@@ -1,15 +1,18 @@
-export { RestaurantX };
 
-import { Client } from './client';
-import { Treballador } from './treballador';
-namespace RestaurantX {
+
+import { Client } from './client.js';
+import { Treballador } from './treballador.js';
+
+export namespace RestaurantX { 
 
     // Llistes per emmagatzemar els clients i treballadors
     export const clients: Client[] = [];
     export const treballadors: Treballador[] = [];
 
+    const buttonAddCLient = document.getElementById("addClientHTML") as HTMLButtonElement;
+    const buttonShowClient = document.getElementById("showClientHTML") as HTMLButtonElement;
     // Afegir un nou client
-    export function addClient() {
+    buttonAddCLient.addEventListener('click', function addClient() {
         const clientNom = (<HTMLInputElement>document.getElementById("clientNom")).value.trim();
         const clientCognoms = (<HTMLInputElement>document.getElementById("clientCognoms")).value.trim();
 
@@ -21,7 +24,7 @@ namespace RestaurantX {
         const client = new Client(clientNom, clientCognoms);
         clients.push(client);
         alert(`Client "${clientNom} ${clientCognoms}" afegit correctament.`);
-    }
+    });
 
     // Afegir una nova comanda
     export function addOrder() {
@@ -64,10 +67,10 @@ namespace RestaurantX {
     }
 
     // Mostrar clients
-    export function showClients() {
+    buttonShowClient.addEventListener('click', function showClients() {
         const clientsOutput = document.getElementById("clientsOutput")!;
         clientsOutput.innerHTML = clients.map(client => `<p>${client.mostrarInformacio()}</p>`).join("");
-    }
+    });
 
     // Mostrar treballadors
     export function showTreballadors() {

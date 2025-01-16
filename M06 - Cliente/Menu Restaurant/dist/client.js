@@ -13,3 +13,4 @@ export class Client extends Persona {
         return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
     }
 }
+//# sourceMappingURL=client.js.map

@@ -1,13 +1,14 @@
-export { RestaurantX };
-import { Client } from './client';
-import { Treballador } from './treballador';
-var RestaurantX;
+import { Client } from './client.js';
+import { Treballador } from './treballador.js';
+export var RestaurantX;
 (function (RestaurantX) {
     // Llistes per emmagatzemar els clients i treballadors
     RestaurantX.clients = [];
     RestaurantX.treballadors = [];
+    const buttonAddCLient = document.getElementById("addClientHTML");
+    const buttonShowClient = document.getElementById("showClientHTML");
     // Afegir un nou client
-    function addClient() {
+    buttonAddCLient.addEventListener('click', function addClient() {
         const clientNom = document.getElementById("clientNom").value.trim();
         const clientCognoms = document.getElementById("clientCognoms").value.trim();
         if (!clientNom || !clientCognoms) {
@@ -17,8 +18,7 @@ var RestaurantX;
         const client = new Client(clientNom, clientCognoms);
         RestaurantX.clients.push(client);
         alert(`Client "${clientNom} ${clientCognoms}" afegit correctament.`);
-    }
-    RestaurantX.addClient = addClient;
+    });
     // Afegir una nova comanda
     function addOrder() {
         const comandaNom = document.getElementById("comandaNom").value.trim();
@@ -54,11 +54,10 @@ var RestaurantX;
     }
     RestaurantX.addTreballador = addTreballador;
     // Mostrar clients
-    function showClients() {
+    buttonShowClient.addEventListener('click', function showClients() {
         const clientsOutput = document.getElementById("clientsOutput");
         clientsOutput.innerHTML = RestaurantX.clients.map(client => `<p>${client.mostrarInformacio()}</p>`).join("");
-    }
-    RestaurantX.showClients = showClients;
+    });
     // Mostrar treballadors
     function showTreballadors() {
         const treballadorsOutput = document.getElementById("treballadorsOutput");
@@ -66,3 +65,4 @@ var RestaurantX;
     }
     RestaurantX.showTreballadors = showTreballadors;
 })(RestaurantX || (RestaurantX = {}));
+//# sourceMappingURL=index.js.map

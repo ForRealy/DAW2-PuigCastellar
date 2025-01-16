@@ -8,3 +8,4 @@ export class Persona {
         return `${this.nom} ${this.cognoms}`;
     }
 }
+//# sourceMappingURL=persona.js.map

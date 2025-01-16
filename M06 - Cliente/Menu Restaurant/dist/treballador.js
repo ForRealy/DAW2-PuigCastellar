@@ -12,3 +12,4 @@ export class Treballador extends Persona {
         return `${info}, DNI: ${this.dni}, Torn: ${this.torn}, Càrrec: ${this.càrrec}`;
     }
 }
+//# sourceMappingURL=treballador.js.map
