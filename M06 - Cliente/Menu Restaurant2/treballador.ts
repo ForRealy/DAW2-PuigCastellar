@@ -1,5 +1,5 @@
 // treballador.ts
-import { Persona } from './persona.js';
+import { Persona } from './persona';
 
 export class Treballador extends Persona {
     public dni: string;

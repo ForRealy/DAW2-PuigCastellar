@@ -1,5 +1,5 @@
 // client.ts
-import { Persona } from './persona';
+import { Persona } from './persona.js';
 
 export class Client extends Persona {
     private comandes: string[];

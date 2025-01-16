@@ -1,5 +1,5 @@
 // treballador.ts
-import { Persona } from './persona';
+import { Persona } from './persona.js';
 export class Treballador extends Persona {
     constructor(nom, cognoms, dni, torn, càrrec) {
         super(nom, cognoms);

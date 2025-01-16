@@ -1,5 +1,5 @@
 // client.ts
-import { Persona } from './persona.js';
+import { Persona } from './persona';
 export class Client extends Persona {
     constructor(nom, cognoms) {
         super(nom, cognoms);

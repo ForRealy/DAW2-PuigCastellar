@@ -1,16 +1,20 @@
 // client.ts
-import { Persona } from './persona.js';
+import { Persona } from './persona';
+
 export class Client extends Persona {
-    constructor(nom, cognoms) {
+    private comandes: string[];
+
+    constructor(nom: string, cognoms: string) {
         super(nom, cognoms);
         this.comandes = [];
     }
-    afegirComanda(comanda) {
+
+    afegirComanda(comanda: string): void {
         this.comandes.push(comanda);
     }
-    mostrarInformacio() {
+
+    mostrarInformacio(): string {
         const info = super.mostrarInformacio();
         return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
     }
 }
-//# sourceMappingURL=client.js.map
