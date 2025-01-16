@@ -1,2 +1,14 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+/* src/theme/variables.css */
+body {
+    font-family: 'Irish Grover', sans-serif; /* Aplica la tipografía globalmente */
+  }
+  
+  h1 {
+    font-family: 'Irish Grover', sans-serif; /* Asegura que solo los h1 tengan esta tipografía */
+    font-size: 4rem;  /* Ajusta el tamaño según lo que necesites */
+    text-align: center;
+    color: white;  /* Cambia el color según el fondo del video */
+  }
+  
