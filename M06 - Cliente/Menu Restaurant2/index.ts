@@ -1,8 +1,8 @@
 //import GestioRecursos from './GestioRecursos.js';
-import client from './client.js';
+import {Client} from './client.js';
 //import Comanda from './Comanda.js';
 
-const gestioRecursos = new GestioRecursos<Client | Comanda>();
+//const gestioRecursos = new GestioRecursos<Client | Comanda>();
 
 const clientNameInput = document.getElementById('clientName') as HTMLInputElement;
 const clientLastNameInput = document.getElementById('clientLastName') as HTMLInputElement;
