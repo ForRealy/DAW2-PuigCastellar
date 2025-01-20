@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <script type="module" src="./dist/index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Restaurant</h1>
+
+    <section id="add-client-section">
+        <h2>Añadir Cliente</h2>
+        <label for="clientName">Nombre:</label>
+        <input type="text" id="clientName" placeholder="Nombre del cliente">
+        <label for="clientLastName">Apellidos:</label>
+        <input type="text" id="clientLastName" placeholder="Apellidos del cliente">
+        <label for="clientDni">DNI:</label>
+        <input type="text" id="clientDni" placeholder="DNI del cliente">
+        <label for="clientCredit">Crédito:</label>
+        <input type="number" id="clientCredit" placeholder="Crédito disponible">
+        <button id="addClientButton">Añadir Cliente</button>
+    </section>
+
+    <section id="add-comanda-section">
+        <h2>Añadir Comanda</h2>
+        <label for="comandaPlats">Platos:</label>
+        <input type="text" id="comandaPlats" placeholder="Lista de platos">
+        <button id="addComandaButton">Añadir Comanda</button>
+    </section>
+
+    <section id="show-resources-section">
+        <h2>Mostrar Recursos</h2>
+        <label for="resourceType">Selecciona el tipo de recurso:</label>
+        <select id="resourceType">
+            <option value="Client">Clientes</option>
+            <option value="Comanda">Comandas</option>
+        </select>
+        <button id="showResourcesButton">Mostrar Recursos</button>
+    </section>
+
+    <section id="resource-list-section">
+        <h3>Recursos:</h3>
+        <ul id="resourceList"></ul>
+    </section>
+</body>
+
+</html>
