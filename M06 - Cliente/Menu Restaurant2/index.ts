@@ -1,8 +1,8 @@
-import GestioRecursos from './GestioRecursos.js';
-import Client from './Client.js';
-import Comanda from './Comanda.js';
+//import {GestioRecursos} from './GestioRecursos.js';
+import {Client} from './Client.js';
+//import {Comanda} from './Comanda.js';
 
-const gestioRecursos = new GestioRecursos<Client | Comanda>();
+//const gestioRecursos = new GestioRecursos<Client | Comanda>();
 
 const clientNameInput = document.getElementById('clientName') as HTMLInputElement;
 const clientLastNameInput = document.getElementById('clientLastName') as HTMLInputElement;
@@ -18,7 +18,6 @@ const showResourcesButton = document.getElementById('showResourcesButton') as HT
 
 addClientButton.onclick = () => {
   //TODO
-  //
 };
 
 addComandaButton.onclick = () => {

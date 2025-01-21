@@ -9,7 +9,7 @@ export class Client extends Persona {
         this.comandes.push(comanda);
     }
     mostrarInformacio() {
-        const info = super.mostrarInformacio();
+        const info = this.mostrarInformacio();
         return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
     }
 }

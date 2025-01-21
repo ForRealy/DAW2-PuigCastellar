@@ -8,7 +8,7 @@ export class Treballador extends Persona {
         this.càrrec = càrrec;
     }
     mostrarInformacio() {
-        const info = super.mostrarInformacio();
+        const info = this.mostrarInformacio();
         return `${info}, DNI: ${this.dni}, Torn: ${this.torn}, Càrrec: ${this.càrrec}`;
     }
 }

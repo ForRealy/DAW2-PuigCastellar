@@ -1,5 +1,5 @@
 // persona.ts
-export class Persona {
+export abstract class Persona {
     public nom: string;
     public cognoms: string;
 
@@ -8,7 +8,5 @@ export class Persona {
         this.cognoms = cognoms;
     }
 
-    mostrarInformacio(): string {
-        return `${this.nom} ${this.cognoms}`;
-    }
+     abstract mostrarInformacio(): string ;
 }

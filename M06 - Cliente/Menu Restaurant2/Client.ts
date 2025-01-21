@@ -1,6 +1,9 @@
 // client.ts
 import { Persona } from './persona';
-
+interface Identificable{
+    tipus: string;
+    getId(): string;
+}
 export class Client extends Persona {
     private comandes: string[];
 
@@ -14,7 +17,7 @@ export class Client extends Persona {
     }
 
     mostrarInformacio(): string {
-        const info = super.mostrarInformacio();
+        const info = this.mostrarInformacio();
         return `${info} ha realitzat ${this.comandes.length} comanda(s).`;
     }
 }

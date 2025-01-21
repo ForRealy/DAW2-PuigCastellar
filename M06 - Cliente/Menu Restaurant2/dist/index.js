@@ -1,5 +1,5 @@
-import GestioRecursos from './GestioRecursos.js';
-const gestioRecursos = new GestioRecursos();
+//import {Comanda} from './Comanda.js';
+//const gestioRecursos = new GestioRecursos<Client | Comanda>();
 const clientNameInput = document.getElementById('clientName');
 const clientLastNameInput = document.getElementById('clientLastName');
 const clientDniInput = document.getElementById('clientDni');
@@ -20,4 +20,5 @@ addComandaButton.onclick = () => {
 showResourcesButton.onclick = () => {
     //TODO
 };
+export {};
 //# sourceMappingURL=index.js.map
