@@ -3,7 +3,7 @@ import Client from './Client.js';
 import Comanda from './Comanda.js';
 
 //Inicialitzacio classe generica que utilitzara client o comanda
-const gestioRecursos = new GestioRecursos<Client | Comanda>();
+const gestioRecursos = new GestioRecursos <Client | Comanda>();
 
 //Declaracio elements HTML per agafar i mostrar informacio
 const clientNameInput = document.getElementById('clientName') as HTMLInputElement;
