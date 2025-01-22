@@ -1,7 +1,7 @@
 export abstract class veiculo {
-    public ruedas: string;
+    public ruedas: number;
 
-    constructor (ruedas: string) {
+    constructor (ruedas: number) {
         this.ruedas = ruedas;
     }
 }
