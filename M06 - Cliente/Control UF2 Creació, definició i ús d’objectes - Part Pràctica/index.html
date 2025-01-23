@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puig-Health</title>
+    <script type="module" src="./dist/index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Gestió d'Empleats i Pacients</h1>
+
+    <section>
+        <h2>Afegir Empleat</h2>
+        <input type="text" id="idEmpleat" placeholder="ID Empleat">
+        <input type="text" id="nomEmpleat" placeholder="Nom">
+        <input type="text" id="cognomsEmpleat" placeholder="Cognoms">
+        <input type="text" id="carrrecEmpleat" placeholder="Càrrec">
+        <button id="afegirEmpleat">Afegir Empleat</button>
+    </section>
+
+    <section>
+        <h2>Afegir Pacient</h2>
+        <input type="text" id="idPacient" placeholder="ID Pacient">
+        <input type="text" id="nomPacient" placeholder="Nom">
+        <input type="text" id="cognomsPacient" placeholder="Cognoms">
+        <input type="text" id="malaltiaPacient" placeholder="Malaltia">
+        <select id="tractamentPacient">
+            <option value="Oral">Oral</option>
+            <option value="Via">Via</option>
+            <option value="Intervencio">Intervenció</option>
+        </select>
+        <button id="afegirPacient">Afegir Pacient</button>
+    </section>
+
+    <section>
+        <h2>Enllaçar Pacient a Empleat</h2>
+        <input type="text" id="idEmpleatEnllac" placeholder="ID Empleat">
+        <input type="text" id="idPacientEnllac" placeholder="ID Pacient">
+        <button id="enllacarPacient">Enllaçar Pacient</button>
+    </section>
+
+    <section>
+        <h2>Mostrar Informació</h2>
+        <button id="mostrarEmpleats">Mostrar Empleats</button>
+        <button id="mostrarPacients">Mostrar Pacients</button>
+        <br><br><br>
+        <input type="text" id="idEmpleatPacient" placeholder="ID Empleat">
+        <button id="mostrarPacientsEmpleat">Mostrar Pacients d'un Empleat</button>
+    </section>
+
+    <section>
+        <h2>Sortida</h2>
+        <ul id="sortidaDades"></ul>
+    </section>
+</body>
+</html>
