@@ -6,6 +6,13 @@ let red = document.getElementById("red");
 let redC = parseInt(red.innerText);
 let org = document.getElementById("orange");
 let orgC = parseInt(org.innerText);
+let purp = document.getElementById("purple");
+let purpC = parseInt(purp.innerText);
+let brow = document.getElementById("brown");
+let browC = parseInt(brow.innerText);
+let blu = document.getElementById("blue");
+let bluC = parseInt(blu.innerText);
+let gre = document.getElementById("green");
 //Barcelona
 clicI.addEventListener("click", () => {
     redC++;
@@ -21,7 +28,8 @@ clicI.addEventListener("contextmenu", (event) => {
         red.innerText = String(redC);
 });
 clicI.addEventListener("mouseenter", () => {
-    console.log("barcelona falta");
+    browC++;
+    brow.innerText = String(browC);
 });
 //Madrid
 clicD.addEventListener("click", () => {
@@ -38,6 +46,19 @@ clicD.addEventListener("contextmenu", (event) => {
         org.innerText = String(orgC);
 });
 clicD.addEventListener("mouseout", () => {
-    console.log("madrid falta");
+    purpC++;
+    purp.innerText = String(purpC);
+});
+//General
+document.body.addEventListener("dblclick", () => {
+    bluC++;
+    blu.innerText = String(bluC);
+});
+document.addEventListener("keypress", (event) => {
+    if (event.key == "0") {
+        gre.textContent = "0";
+    }
+    else
+        gre.textContent += event.key;
 });
 //# sourceMappingURL=index.js.map
