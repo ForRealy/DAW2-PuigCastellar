@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./dist/index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Contact Form</h3>
+        <form action="unhtmlnou.html" method="GET">
+          
+            <label for="name">Nombre: <input required type="text" name="name" id="name" autofocus></label>
+            <br><br>
+            <label for="passw">Contraseña: <input maxlength="16" required  type="password" name="" id="passw" ></label>
+            <br><br>
+            <label for="mail">Gmail: <input placeholder="user@gmail.com" type="email" name="mail" id="mail"></label>
+            <br><br>
+            <datalist  id="planets">
+             <option value="FC Barcelona"/>
+             <option value="Real Madrid"/>
+            </datalist>
+            
+            <label for="team">
+                Escoje tu equipo:
+                <input type="text" name="homeworld" id="homeworld" list="planets">
+
+                
+            </label>
+            <br><br>
+            <label for="win">
+                Ganaste el ultimo partido?:
+                <select name="team" id="team">
+                    <option value="">No</option>
+                    <option value="">Si</option>
+                </select>
+            </label>
+            <br><br>
+            <label for="gol"> Goles Marcados: <input  type="number" name="gol" id="gol"></label>
+            <br><br>
+            <label for="textArea"> 
+                <textarea readonly name="textArea" id="textArea">Aqui nos puedes escrivir tus quejas.</textarea>
+            </label>
+            <br><br>
+            <input type="button" value="Limpiar Formulario" id="myForm">
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>

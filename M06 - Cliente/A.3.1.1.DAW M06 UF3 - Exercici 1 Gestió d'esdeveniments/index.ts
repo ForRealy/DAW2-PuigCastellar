@@ -68,3 +68,7 @@ document.addEventListener("keypress", (event) => {
     }else
     gre.textContent += event.key;
 });
+
+
+var form = document.getElementById("myForm")! as HTMLFormElement;
+form.reset();

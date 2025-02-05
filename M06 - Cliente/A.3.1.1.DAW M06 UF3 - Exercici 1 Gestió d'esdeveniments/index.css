@@ -55,7 +55,9 @@ h1 {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.container{
+    padding-bottom: 20px;
+}
 /* Colores de los cuadros */
 #red { background-color: red; }
 #blue { background-color: blue; }
