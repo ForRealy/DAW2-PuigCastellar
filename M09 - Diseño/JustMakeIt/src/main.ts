@@ -1,10 +1,12 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router';  // Añadido
+import { createRouter, createWebHistory } from 'vue-router';
 import { IonicVue } from '@ionic/vue';
+import App from './App.vue';
 
 // Importa tus componentes/páginas
-import HomePage from './views/HomePage.vue';  // Asegúrate de tener esta ruta
+import HomePage from './views/HomePage.vue';
+import LoginPage from './views/LoginPage.vue';
+import RegisterPage from './views/RegisterPage.vue';
 
 /* Core CSS de Ionic */
 import '@ionic/vue/css/core.css';
@@ -26,30 +28,22 @@ import '@ionic/vue/css/palettes/dark.system.css';
 /* Variables de tema */
 import './theme/variables.css';
 
-// Configuración del Router (Añadido)
+// Configura el router
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { 
-      path: '/',
-      component: HomePage  // Tu página principal
-    },
-    { 
-      path: '/login',
-      component: () => import('./views/LoginPage.vue')  // Carga diferida
-    },
-    { 
-      path: '/register',
-      component: () => import('./views/RegisterPage.vue')  // Carga diferida
-    }
-  ]
+    { path: '/', component: HomePage },
+    { path: '/login', component: LoginPage },
+    { path: '/register', component: RegisterPage },
+  ],
 });
 
+// Crea la aplicación
 const app = createApp(App)
-  .use(IonicVue)
-  .use(router);  // Router integrado
+  .use(IonicVue, { router })  // Pasa el router a IonicVue
+  .use(router);
 
-// Espera a que el router esté listo para hidratación
+// Espera a que el router esté listo
 router.isReady().then(() => {
   app.mount('#app');
 });
