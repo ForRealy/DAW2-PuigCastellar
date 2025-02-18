@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <title>Videoclub</title>
-  <script src="./dist/videoclub.js"></script>
+  <script src="./dist/videoclub.js" defer></script>
   <link rel="stylesheet" href="index.css">
 </head>
 
-<body onload="carregarDades()">
+<body>
   <div class="background-image"></div>
 
-  <h1>Videoclub</h1>
+  <h1>Videoclub See-a-Film</h1>
+  
+  <div class="controls">
+    <button onclick="window.location.href='formulari.html'">Nou Client</button>
+  </div>
 
   <section id="clients">
     <h2>Llista de clients</h2>
     <ul id="clientList"></ul>
   </section>
 
-  <section id="addItem">
-    <h2>Afegir Pel·lícules o Videojocs</h2>
-    <input type="text" id="itemInput" placeholder="Nom o Nom, Plataforma">
-    <button onclick="afegirProducte()">Afegir</button>
-  </section>
-
   <section id="displayItems">
-    <h2>Mostrar Contingut</h2>
+    <h2>Contingut</h2>
     <div class="controls">
-      <button onclick="mostrarDades('Pel·licules')">Mostrar Pel·lícules</button>
-      <button onclick="mostrarDades('Videojocs')">Mostrar Videojocs</button>
-      <button onclick="mostrarDades()">Mostrar Tot</button>
+      <button onclick="mostrarDades('Pel·licules')">Pel·lícules</button>
+      <button onclick="mostrarDades('Videojocs')">Videojocs</button>
+      <button onclick="mostrarDades()">Tot</button>
     </div>
     <div id="tableContainer"></div>
   </section>
 
 </body>
-
 </html>

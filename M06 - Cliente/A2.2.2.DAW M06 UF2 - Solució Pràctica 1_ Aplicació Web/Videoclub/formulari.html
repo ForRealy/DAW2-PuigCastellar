@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulari Clients</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="background-image"></div>
+    
+    <h1>Registre de Clients</h1>
+    
+    <form id="clientForm" method="GET" action="index.html" novalidate>
+        <!-- Nombre -->
+        <div class="form-group">
+            <label>Nom Complet:</label>
+            <input type="text" id="nom" name="nom" required>
+            <span class="error-message"></span>
+        </div>
+
+        <!-- Fecha Nacimiento -->
+        <div class="form-group">
+            <label>Data Naixement:</label>
+            <input type="date" id="dataNaixement" name="dataNaixement" required>
+            <span class="error-message"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error-message"></span>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+            <label>Contrasenya:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="error-message"></span>
+        </div>
+
+        <!-- Datalist Películas -->
+        <div class="form-group">
+            <label>Pel·lícula Preferida:</label>
+            <input list="pelicules" id="pelicula" name="pelicula">
+            <datalist id="pelicules">
+                <option value="Inception">
+                <option value="The Godfather">
+                <option value="Pulp Fiction">
+            </datalist>
+        </div>
+
+        <!-- Select Múltiple Géneros -->
+        <div class="form-group">
+            <label>Gèneres Favorits:</label>
+            <select id="generes" name="generes" multiple>
+                <option value="Acció">Acció</option>
+                <option value="Comèdia">Comèdia</option>
+                <option value="Drama">Drama</option>
+            </select>
+        </div>
+
+        <!-- Botones -->
+        <div class="controls">
+            <button type="submit">Enviar</button>
+            <button type="button" onclick="window.location.href='index.html'">Tornar</button>
+        </div>
+    </form>
+
+    <script src="./dist/form_validation.js"></script>
+</body>
+</html>
