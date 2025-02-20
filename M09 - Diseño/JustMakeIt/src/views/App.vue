@@ -1,61 +1,32 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
+  <ion-app>
+    <ion-header>
       <ion-toolbar>
-        <ion-title>Nigger 👨🏿</ion-title>
+        <ion-title>Ionic Vue Flat App</ion-title>
       </ion-toolbar>
     </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Nigger 👨🏿</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
-        <strong>Hello</strong>
-        <p>World</p>
-        <span>🐢</span>
-      </div>
+    <ion-content class="ion-padding">
+      <h1>Welcome to your Ionic Vue App!</h1>
     </ion-content>
-  </ion-page>
+  </ion-app>
 </template>
 
-<script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+<script>
+import { defineComponent } from 'vue';
+import { IonApp, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    IonApp,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent
+  }
+});
 </script>
 
-<style scoped>
-
-#container {
-  text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container span {
-  font-size: 5rem;
-}
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
+<style>
+/* Add custom styles here if needed */
 </style>
