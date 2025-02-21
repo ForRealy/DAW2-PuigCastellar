@@ -1,2 +1,46 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+/* Fondo permanente para todas las páginas */
+.ion-page {
+  background: url('../assets/background.gif') no-repeat center center fixed;
+  background-size: cover;
+  background-color: white;
+  overflow-x: hidden; 
+  min-height: 100vh; 
+  
+}
+ion-content {
+  --background: ;
+}
+ion-text {
+  font-family: 'Bangers', cursive !important;
+  color: black;
+}
+.texto-responsivo h1 {
+  font-size: clamp(2.5rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.boton-personalizado {
+  border-color: black;
+  color: black;
+  font-size: 18px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+ion-button {
+  --background: url('../assets/button.jpg') no-repeat center center / cover;
+
+  --border-radius: 50px;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 2px;
+
+  --box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+
+  --ripple-color: deeppink;
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
