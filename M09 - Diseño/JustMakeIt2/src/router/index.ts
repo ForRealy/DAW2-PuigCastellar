@@ -4,11 +4,13 @@ import HomePage from '@/views/HomePage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
 import SettingsaPage from '@/views/SettingsaPage.vue';
+import SplashScreen from '@/views/SplashScreen.vue';
+import LobbyPage from '@/views/LobbyPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    component: SplashScreen
   },
   {
     path: '/home',
@@ -29,7 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/settings',
     name: 'Settings',
     component: SettingsaPage
-  }
+  }, {
+    path: '/lobby',
+    name: 'Lobby',
+    component: LobbyPage
+  },
 ];
 
 const router = createRouter({

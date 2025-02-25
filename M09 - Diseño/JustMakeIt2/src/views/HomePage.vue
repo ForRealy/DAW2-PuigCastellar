@@ -2,7 +2,7 @@
 <template>
   <ion-page>
     <!-- Botón de ajustes con solo el icono, sin fondo ni borde -->
-    <ion-button class="settings-button" router-link="/settings" fill="clear">
+    <ion-button class="settings-button" router-link="/settings">
       <ion-icon :icon="settingsSharp" />
     </ion-button>
 
