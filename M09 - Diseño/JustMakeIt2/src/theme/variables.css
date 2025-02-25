@@ -5,42 +5,69 @@ http://ionicframework.com/docs/theming/ */
   background: url('../assets/background.gif') no-repeat center center fixed;
   background-size: cover;
   background-color: white;
-  overflow-x: hidden; 
-  min-height: 100vh; 
-  
+  overflow-x: hidden;
+  min-height: 100vh;
 }
+
 ion-content {
   --background: ;
 }
+
 ion-text {
   font-family: 'Bangers', cursive !important;
   color: black;
 }
-.texto-responsivo h1 {
-  font-size: clamp(2.5rem, 4vw, 3rem);
+.titulo-superior,
+.titulo-inferior {
+  font-size: clamp(4rem, 6vw, 5rem); /* Tamaño de fuente aumentado para destacar */
   text-align: center;
+  margin: 0; /* Se elimina el margen para mantener el espaciado controlado */
 }
-
+.titulo-superior {
+  margin-bottom: 0.5rem;
+}
 .boton-personalizado {
   border-color: black;
   color: black;
   font-size: 18px;
-  padding: 12px;
+  padding: 5px;
   font-weight: bold;
 }
 
 ion-button {
   --background: url('../assets/button.jpg') no-repeat center center / cover;
-
   --border-radius: 50px;
   --border-color: #000;
   --border-style: solid;
   --border-width: 2px;
-
   --box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-
   --ripple-color: deeppink;
-
   --padding-top: 10px;
   --padding-bottom: 10px;
+}
+.botones-container {
+  display: flex;
+  flex-direction: column;
+}
+.settings-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: transparent !important; /* Sin fondo */
+  border: none !important; /* Sin borde */
+  padding: 0; /* Sin padding */
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.settings-button:hover {
+  transform: scale(1.1);
+}
+.settings-button ion-icon {
+  border-style: none;
+  font-size: 2.5rem; /* Ajusta el tamaño según se necesite */
 }

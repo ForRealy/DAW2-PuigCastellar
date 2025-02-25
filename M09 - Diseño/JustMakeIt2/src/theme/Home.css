@@ -1,14 +1,8 @@
-/* ../theme/Home.css */
+/* Estilos específicos para Home.css */
 .custom-content {
   position: relative;
   min-height: 100vh;
   padding: 1rem; /* Espaciado interno para móviles */
-}
-
-.custom-content {
-  position: relative;
-  min-height: 100vh;
-  padding: 1rem;
 }
 
 .content-wrapper {
