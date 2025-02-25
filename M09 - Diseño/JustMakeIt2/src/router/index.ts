@@ -6,6 +6,7 @@ import RegisterPage from '@/views/RegisterPage.vue';
 import SettingsaPage from '@/views/SettingsaPage.vue';
 import SplashScreen from '@/views/SplashScreen.vue';
 import LobbyPage from '@/views/LobbyPage.vue';
+import HostPage from '@/views/HostPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,7 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/lobby',
     name: 'Lobby',
     component: LobbyPage
-  },
+  },{
+    path: '/host',
+    name: 'Host',
+    component: HostPage
+  }
 ];
 
 const router = createRouter({
