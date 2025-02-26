@@ -38,15 +38,16 @@
             <img class="background-image" src="../assets/button.jpg" alt="Tablero de juego"/>
             
             <div class="inner-field">
-              <div 
-                v-for="(sphere, index) in spheres" 
-                :key="index"
-                class="sphere"
-                :class="sphere.position"
-                @click="handleSphereClick(sphere)"
-              >
-                +
-              </div>
+                <div 
+    v-for="(sphere, index) in spheres" 
+    :key="index"
+    class="sphere"
+    :class="sphere.position"
+    @click="handleSphereClick(sphere)"
+  >
+    +
+  </div>
+  <ion-icon :icon="homeSharp" class="home-icon"></ion-icon>
               <div 
   v-for="field in innerFields"
   :key="field.id"
@@ -70,7 +71,7 @@
   >
     +
   </div>
-  <ion-icon :icon="homeSharp" class="home-icon"></ion-icon>
+  
 </div>
             </div>
           </div>
