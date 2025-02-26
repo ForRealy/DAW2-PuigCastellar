@@ -34,14 +34,9 @@
           @keydown="handleKeydown"
           tabindex="0"
         >
-          <div class="scrollable-content" ref="scrollableContent">
-            <img 
-              class="background-image" 
-              src="../assets/button.jpg" 
-              alt="Tablero de juego"
-              draggable="false"
-              @error="handleImageError"
-            />
+        <div class="scrollable-content" ref="scrollableContent">
+            <img class="background-image" src="../assets/button.jpg" alt="Tablero de juego"/>
+            
             <div class="inner-field">
               <div 
                 v-for="(sphere, index) in spheres" 
@@ -52,12 +47,31 @@
               >
                 +
               </div>
-              <ion-icon 
-                :icon="homeSharp" 
-                class="home-icon"
-                ref="homeIcon"
-                aria-hidden="true"
-              ></ion-icon>
+              <div 
+  v-for="field in innerFields"
+  :key="field.id"
+  class="inner-field dynamic-field"
+  :style="{
+    transform: `
+      translate(
+        ${field.translate.x}%,
+        ${field.translate.y}%
+      )
+      translate(-50%, -50%)
+    `
+  }"
+>
+  <div 
+    v-for="pos in ['top', 'right', 'bottom', 'left']" 
+    :key="pos"
+    class="sphere" 
+    :class="pos"
+    @click="handleSphereClick({ position: pos }, field)"
+  >
+    +
+  </div>
+  <ion-icon :icon="homeSharp" class="home-icon"></ion-icon>
+</div>
             </div>
           </div>
         </div>
@@ -322,9 +336,37 @@ const stopDrag = () => {
   currentTranslateY.value = translateY.value
 }
   
-const handleSphereClick = (sphere) => {
-  console.log(`Sphere ${sphere.position} clicked`)
-}
+const innerFields = ref([]);
+
+const handleSphereClick = (sphere, parentField = null) => {
+  const directions = {
+    top: { x: 0, y: -1 },
+    right: { x: 1, y: 0 },
+    bottom: { x: 0, y: 1 },
+    left: { x: -1, y: 0 }
+  };
+
+  // Calcular translate basado en el padre
+  const parentTranslate = parentField ? parentField.translate : { x: 0, y: 0 };
+  const direction = directions[sphere.position];
+  const offset = 1; // Offset fijo para cada nuevo campo
+
+  const newTranslate = {
+    x: parentTranslate.x + (direction.x * 100 * offset),
+    y: parentTranslate.y + (direction.y * 100 * offset)
+  };
+
+  const newField = {
+    id: Date.now(),
+    position: sphere.position,
+    direction: direction,
+    offset: offset,
+    parentId: parentField ? parentField.id : null,
+    translate: newTranslate // Guardar la posición acumulada
+  };
+
+  innerFields.value.push(newField);
+};
   </script>
   
   <style scoped>
