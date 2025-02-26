@@ -125,6 +125,7 @@ const debounce = (fn, delay) => {
 }
 
   
+
 const calculateBounds = () => {
   if (!outerField.value || !scrollableContent.value) return
   
@@ -215,20 +216,16 @@ const handleTouchMove = (e) => {
     zoom(delta, center.x, center.y)
   }
 }
-
 const zoom = (delta, clientX, clientY) => {
   const containerRect = outerField.value.getBoundingClientRect()
-
+  const contentRect = scrollableContent.value.getBoundingClientRect()
   
-  // Calcular posición relativa antes del zoom
   const x = (clientX - containerRect.left - translateX.value) / currentScale.value
   const y = (clientY - containerRect.top - translateY.value) / currentScale.value
   
-  // Aplicar nuevo zoom
   const newScale = Math.min(2, Math.max(0.5, currentScale.value + delta))
   currentScale.value = newScale
   
-  // Ajustar posición para mantener el foco
   const newX = clientX - containerRect.left - x * newScale
   const newY = clientY - containerRect.top - y * newScale
   
@@ -258,10 +255,10 @@ const zoom = (delta, clientX, clientY) => {
   }
   
   const applyTransform = (x, y) => {
-  calculateBounds() // Actualizar límites con el nuevo scale
+  calculateBounds()
   
-  x = Math.min(0, Math.max(maxTranslateX.value, x))
-  y = Math.min(0, Math.max(maxTranslateY.value, y))
+  x = Math.max(maxTranslateX.value, Math.min(0, x))
+  y = Math.max(maxTranslateY.value, Math.min(0, y))
   
   translateX.value = x
   translateY.value = y
@@ -275,26 +272,27 @@ const zoom = (delta, clientX, clientY) => {
   
   // Mejorado: Manejo de eventos de arrastre con verificación de límites
   const startDrag = (e) => {
-    isDragging.value = true
-    const [clientX, clientY] = getClientPosition(e)
-    startX.value = clientX
-    startY.value = clientY
-    currentTranslateX.value = translateX.value
-    currentTranslateY.value = translateY.value
-  }
+  if (e.touches?.length > 1) return // Ignorar multitouch
+  isDragging.value = true
+  const [clientX, clientY] = getClientPosition(e)
+  startX.value = clientX
+  startY.value = clientY
+  currentTranslateX.value = translateX.value
+  currentTranslateY.value = translateY.value
+}
+
+const drag = (e) => {
+  if (!isDragging.value) return
   
-  const drag = (e) => {
-    if (!isDragging.value) return
-    
-    const [clientX, clientY] = getClientPosition(e)
-    const deltaX = clientX - startX.value
-    const deltaY = clientY - startY.value
-    const newX = currentTranslateX.value + deltaX
-    const newY = currentTranslateY.value + deltaY
-  
-    if (rafId) cancelAnimationFrame(rafId)
-    rafId = requestAnimationFrame(() => applyTransform(newX, newY))
-  }
+  const [clientX, clientY] = getClientPosition(e)
+  const deltaX = (clientX - startX.value) / currentScale.value // Ajustar por escala
+  const deltaY = (clientY - startY.value) / currentScale.value // Ajustar por escala
+  const newX = currentTranslateX.value + deltaX
+  const newY = currentTranslateY.value + deltaY
+
+  if (rafId) cancelAnimationFrame(rafId)
+  rafId = requestAnimationFrame(() => applyTransform(newX, newY))
+}
   
   onMounted(() => {
   setupImageObserver()
@@ -374,7 +372,7 @@ const handleSphereClick = (sphere, parentField = null) => {
     cursor: grab;
     border: 2px solid black;
     border-radius: 1rem;
-    touch-action: pan-x pan-y; /* Mejor que 'none' para compatibilidad */
+    touch-action: none;
     background-color: #f0f0f0; /* Color de fondo para espacios vacíos */
   }
   
@@ -383,6 +381,9 @@ const handleSphereClick = (sphere, parentField = null) => {
   }
   
   .scrollable-content {
+    will-change: transform; /* Optimizar para GPU */
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
   position: absolute; /* Cambiar de relative a absolute */
   width: 300%;
   height: 300%;
