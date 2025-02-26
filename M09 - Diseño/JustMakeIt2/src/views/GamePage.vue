@@ -99,7 +99,6 @@
   // Lógica de arrastre y desplazamiento
   const outerField = ref(null)
 const scrollableContent = ref(null)
-const homeIcon = ref(null)
 const isDragging = ref(false)
 const startX = ref(0)
 const startY = ref(0)
@@ -178,11 +177,6 @@ const getCenter = (t1, t2) => {
     calculateBounds()
     centerView()
     if (observer) observer.disconnect()
-  }
-  
-  const handleImageError = () => {
-    console.error('Error cargando la imagen del tablero')
-    // Puedes agregar una imagen de respaldo aquí si es necesario
   }
   
   // Mejorado: Centrado inicial con verificación de posición
