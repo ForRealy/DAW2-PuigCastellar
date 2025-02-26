@@ -7,6 +7,8 @@ import SettingsaPage from '@/views/SettingsaPage.vue';
 import SplashScreen from '@/views/SplashScreen.vue';
 import LobbyPage from '@/views/LobbyPage.vue';
 import HostPage from '@/views/HostPage.vue';
+import GamePage from '@/views/GamePage.vue';
+import PasswordPage from '@/views/PasswordPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -40,6 +42,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/host',
     name: 'Host',
     component: HostPage
+  },{
+    path: '/game',
+    name: 'Game',
+    component: GamePage
+  },{
+    path: '/recover-password',
+    name: 'recover-password',
+    component: PasswordPage
   }
 ];
 
