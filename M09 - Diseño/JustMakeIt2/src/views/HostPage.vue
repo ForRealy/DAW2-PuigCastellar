@@ -104,7 +104,7 @@ const handleLogin = () => {
 };
 
 const goBack = () => {
-  router.go(-1);
+  router.push('/lobby');  // Changed from router.go(-1)
 };
 </script>
 
