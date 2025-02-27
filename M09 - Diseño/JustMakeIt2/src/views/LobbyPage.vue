@@ -22,7 +22,7 @@
             <ion-button 
               expand="block" 
               class="custom-button"
-              @click="$router.push('/game list')"
+              @click="$router.push('/join')"
             >
               Join Game
             </ion-button>

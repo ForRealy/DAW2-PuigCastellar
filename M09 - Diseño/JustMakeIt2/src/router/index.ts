@@ -9,6 +9,8 @@ import LobbyPage from '@/views/LobbyPage.vue';
 import HostPage from '@/views/HostPage.vue';
 import GamePage from '@/views/GamePage.vue';
 import PasswordPage from '@/views/PasswordPage.vue';
+import JoinPage from '@/views/JoinPage.vue';
+import LaderPage from '@/views/LaderPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -50,6 +52,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/recover-password',
     name: 'recover-password',
     component: PasswordPage
+  },{
+    path: '/join',
+    name: 'join',
+    component: JoinPage
+  },{
+    path: '/laderboard',
+    name: 'laderboard',
+    component: LaderPage
   }
 ];
 
