@@ -1,7 +1,5 @@
-<!-- HomePage.vue -->
 <template>
     <ion-page>
-      <!-- Botón de ajustes con solo el icono, sin fondo ni borde -->
       <ion-button class="settings-button" router-link="/settings">
         <ion-icon :icon="settingsSharp" />
       </ion-button>
@@ -12,10 +10,34 @@
             <h1 class="titulo-superior">Just</h1>
             <h1 class="titulo-inferior">Make It</h1>
           </ion-text>
-          
-          <div class="botones-container">
-            <ion-button shape="round" class="boton-personalizado" router-link="/login">Login</ion-button>
-            <ion-button shape="round" class="boton-personalizado" router-link="/register">Register</ion-button>
+  
+          <div class="host-section">
+            <div class="number-field">
+              <div class="players-row">
+                <ion-text color="primary">Players:</ion-text>
+                <ion-input 
+                  type="number" 
+                  min="2" 
+                  max="8" 
+                  value="4"
+                  class="number-input"
+                ></ion-input>
+              </div>
+              <ion-text 
+              class="how-to-play-text"
+              @click="navigateToHowToPlay"
+            >
+              How to Play
+            </ion-text>
+            </div>
+            
+            <ion-button 
+              shape="round" 
+              class="submit-button" 
+              router-link="/host"
+            >
+              Submit
+            </ion-button>
           </div>
         </div>
       </ion-content>
@@ -23,17 +45,63 @@
   </template>
   
   <script setup>
-  import { IonPage, IonContent, IonButton, IonIcon } from '@ionic/vue'
+  import { useRouter } from 'vue-router'
+  import { IonPage, IonContent, IonButton, IonIcon, IonText, IonInput } from '@ionic/vue'
   import { settingsSharp } from 'ionicons/icons'
-  
   import '../theme/Home.css'
   
+  const router = useRouter()
+  const navigateToHowToPlay = () => {
+  router.push('/gbt')
+}
+  
   </script>
-  
-  <!-- 
-    Cambios realizados:
-    - Se mantiene el botón de ajustes, pero se han ajustado sus propiedades para que solo muestre el icono (engranaje),
-      sin fondo ni borde, mediante el atributo fill="clear".
-    - Se añadieron clases CSS para eliminar cualquier padding y borde, y se implementó un efecto hover para agrandarlo ligeramente.
-  -->
-  
+
+ 
+<style scoped>
+.host-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.number-field {
+  width: 40vw;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: white;
+}
+
+.players-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.number-input {
+  width: 60px;
+  color: black;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.how-to-play-text {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+}
+
+.submit-button {
+  width: 160px;
+  font-weight: bold;
+}
+</style>

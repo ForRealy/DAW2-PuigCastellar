@@ -11,6 +11,8 @@ import GamePage from '@/views/GamePage.vue';
 import PasswordPage from '@/views/PasswordPage.vue';
 import JoinPage from '@/views/JoinPage.vue';
 import LaderPage from '@/views/LaderPage.vue';
+import GameSPage from '@/views/GameSPage.vue';
+import HelpPage from '@/views/HelpPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -60,6 +62,15 @@ const routes: Array<RouteRecordRaw> = [
     path: '/laderboard',
     name: 'laderboard',
     component: LaderPage
+  },{
+    path: '/gsettings',
+    name: 'gsettings',
+    component: GameSPage
+  }
+  ,{
+    path: '/gbt',
+    name: 'HelpPage',
+    component: HelpPage
   }
 ];
 
