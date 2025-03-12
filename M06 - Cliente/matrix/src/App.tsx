@@ -1,26 +1,15 @@
+// App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Board from './components/Board';
 
-function App() {
+// Componente principal de la aplicación para probar la fusión de iconos al arrastrarlos
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: '20px' }}>
+      <h1>Tablero con Fusión de Iconos</h1>
+      <Board />
     </div>
   );
-}
+};
 
 export default App;
