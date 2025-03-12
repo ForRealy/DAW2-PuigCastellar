@@ -27,7 +27,7 @@ const getIconSymbol = (phase: number): string => {
     case 0:
       return "⭐"; // Fase 0
     case 1:
-      return "✨"; // Fase 1 (fusionado)
+      return "✨"; // Fase 1 
     default:
       return "🔥"; // Fases superiores
   }
