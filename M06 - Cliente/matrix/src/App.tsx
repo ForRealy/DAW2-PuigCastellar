@@ -1,12 +1,21 @@
 // App.tsx
-import React from 'react';
-import Board from './components/Board';
+import React from "react";
+import Board from "./components/Board";
 
-// Componente principal de la aplicación para probar la fusión de iconos al arrastrarlos
+// Estilo para centrar el contenido en la página
+const appStyle: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+  backgroundColor: "#f0f0f0",
+};
+
 const App: React.FC = () => {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Tablero con Fusión de Iconos</h1>
+    <div style={appStyle}>
+      <h1>Tablero</h1>
       <Board />
     </div>
   );

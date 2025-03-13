@@ -8,23 +8,25 @@ import IconAdd from "./IconAdd";
 const ROWS = 6;
 const COLS = 6;
 
+// Definición de la posición para los IconAdd
+interface IconAddPosition {
+  row: number;
+  col: number;
+  type: "A" | "B";
+}
+
 // Posiciones reservadas para los iconos fijos IconAdd (esquina superior izquierda e inferior derecha)
 const ICON_ADD_POSITIONS: IconAddPosition[] = [
-    { row: 0, col: 0, type: "A" },
-    { row: ROWS - 1, col: COLS - 1, type: "B" },
-  ];
+  { row: 0, col: 0, type: "A" },
+  { row: ROWS - 1, col: COLS - 1, type: "B" },
+];
 
-interface IconAddPosition {
-    row: number;
-    col: number;
-    type: "A" | "B"; // Explicitly type the 'type' property
-  }
 // Definición de la estructura de los iconos draggable, que incluyen su posición, tipo y fase
 interface IconData {
   row: number;
   col: number;
-  type: "A" | "B"; // Tipo del icono (A o B)
-  phase: number; // Fase del icono (0, 1, etc.)
+  type: "A" | "B";
+  phase: number;
 }
 
 // Función para determinar el símbolo del icono según su fase y tipo
@@ -39,6 +41,17 @@ const getIconSymbol = (type: "A" | "B", phase: number): string => {
 const Board: React.FC = () => {
   // Estado para almacenar los iconos draggable presentes en el tablero
   const [draggableIcons, setDraggableIcons] = useState<IconData[]>([]);
+
+  // Estilo para el contenedor del tablero, dándole un aspecto moderno y presentable
+  const boardContainerStyle: React.CSSProperties = {
+    display: "inline-block",
+    padding: "15px",
+    background: "#f5f5f5",
+    border: "2px solid #ddd",
+    borderRadius: "8px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    margin: "20px auto"
+  };
 
   // Determina si una celda está vacía (excluyendo celdas reservadas y celdas ya ocupadas por iconos draggable)
   const isCellEmpty = (row: number, col: number): boolean => {
@@ -69,7 +82,10 @@ const Board: React.FC = () => {
   const handleIconAddClick = (type: "A" | "B") => {
     const emptyCell = findEmptyCell();
     if (emptyCell) {
-      setDraggableIcons([...draggableIcons, { row: emptyCell.row, col: emptyCell.col, type, phase: 0 }]);
+      setDraggableIcons([
+        ...draggableIcons,
+        { row: emptyCell.row, col: emptyCell.col, type, phase: 0 }
+      ]);
     } else {
       console.log("No hay celdas vacías disponibles");
     }
@@ -87,7 +103,7 @@ const Board: React.FC = () => {
 
   // Maneja el evento drop en una celda:
   // - Si la celda está vacía, mueve el icono arrastrado a esa posición.
-  // - Si la celda ya contiene un icono del mismo tipo y fase, se fusionan (fase incrementada y se elimina el arrastrado).
+  // - Si la celda ya contiene un icono del mismo tipo y fase, se fusionan (fase incrementada y se elimina el icono arrastrado).
   const handleDrop = (row: number, col: number) => (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const iconIndexStr = e.dataTransfer.getData("iconIndex");
@@ -137,7 +153,10 @@ const Board: React.FC = () => {
       const iconAddData = ICON_ADD_POSITIONS.find(pos => pos.row === row && pos.col === col);
       if (iconAddData) {
         cellContent = (
-          <IconAdd symbol={iconAddData.type === "A" ? "🌱" : "🔋"} onClick={() => handleIconAddClick(iconAddData.type)} />
+          <IconAdd
+            symbol={iconAddData.type === "A" ? "🌱" : "🔋"}
+            onClick={() => handleIconAddClick(iconAddData.type)}
+          />
         );
       } else {
         // Verificamos si hay un icono draggable en la celda
@@ -154,19 +173,25 @@ const Board: React.FC = () => {
       }
 
       rowCells.push(
-        <Cell key={`${row}-${col}`} row={row} col={col} onDragOver={handleDragOver} onDrop={handleDrop(row, col)}>
+        <Cell
+          key={`${row}-${col}`}
+          row={row}
+          col={col}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop(row, col)}
+        >
           {cellContent}
         </Cell>
       );
     }
     boardCells.push(
-      <div key={`row-${row}`} style={{ display: "flex" }}>
+      <div key={`row-${row}`} style={{ display: "flex", justifyContent: "center" }}>
         {rowCells}
       </div>
     );
   }
 
-  return <div>{boardCells}</div>;
+  return <div style={boardContainerStyle}>{boardCells}</div>;
 };
 
 export default Board;
