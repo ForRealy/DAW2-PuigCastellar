@@ -1,4 +1,3 @@
-// Board.tsx
 import React, { useState } from "react";
 import Cell from "./Cell";
 import Icon from "./Icon";
@@ -15,7 +14,7 @@ interface IconAddPosition {
   type: "A" | "B";
 }
 
-// Posiciones reservadas para los iconos fijos IconAdd (esquina superior izquierda e inferior derecha)
+// Posiciones fijas para los iconos de añadir
 const ICON_ADD_POSITIONS: IconAddPosition[] = [
   { row: 0, col: 0, type: "A" },
   { row: ROWS - 1, col: COLS - 1, type: "B" },
@@ -29,7 +28,7 @@ interface IconData {
   phase: number;
 }
 
-// Función para determinar el símbolo del icono según su fase y tipo
+// Devuelve el símbolo correspondiente al tipo y fase
 const getIconSymbol = (type: "A" | "B", phase: number): string => {
   if (type === "A") {
     return ["🌱", "🌿", "🌻", "🌸"][phase] || "🌸"; // Símbolos de tipo A

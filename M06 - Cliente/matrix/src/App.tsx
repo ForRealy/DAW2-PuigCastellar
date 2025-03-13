@@ -1,8 +1,7 @@
-// App.tsx
 import React from "react";
 import Board from "./components/Board";
 
-// Estilo para centrar el contenido en la página
+// Estilos principales del contenedor
 const appStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -12,6 +11,7 @@ const appStyle: React.CSSProperties = {
   backgroundColor: "#f0f0f0",
 };
 
+// Componente principal
 const App: React.FC = () => {
   return (
     <div style={appStyle}>
