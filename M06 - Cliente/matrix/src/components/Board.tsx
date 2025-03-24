@@ -20,28 +20,19 @@ const ICON_ADD_POSITIONS: IconAddPosition[] = [
   { row: ROWS - 1, col: COLS - 1, type: "B" },
 ];
 
-// Definición de la estructura de los iconos draggable, que incluyen su posición, tipo y fase
+// Definición de la estructura de los iconos draggable, ahora usando directamente el símbolo
 interface IconData {
   row: number;
   col: number;
   type: "A" | "B";
-  phase: number;
+  symbol: string;
 }
-
-// Devuelve el símbolo correspondiente al tipo y fase
-const getIconSymbol = (type: "A" | "B", phase: number): string => {
-  if (type === "A") {
-    return ["🌱", "🌿", "🌻", "🌸"][phase] || "🌸"; // Símbolos de tipo A
-  } else {
-    return ["🔋", "⚡", "🖥️", "💥"][phase] || "💥"; // Símbolos de tipo B
-  }
-};
 
 const Board: React.FC = () => {
   // Estado para almacenar los iconos draggable presentes en el tablero
   const [draggableIcons, setDraggableIcons] = useState<IconData[]>([]);
 
-  // Estilo para el contenedor del tablero, dándole un aspecto moderno y presentable
+  // Estilo para el contenedor del tablero
   const boardContainerStyle: React.CSSProperties = {
     display: "inline-block",
     padding: "15px",
@@ -52,7 +43,7 @@ const Board: React.FC = () => {
     margin: "20px auto"
   };
 
-  // Determina si una celda está vacía (excluyendo celdas reservadas y celdas ya ocupadas por iconos draggable)
+  // Verifica si la celda está vacía (excluyendo las celdas reservadas y las ocupadas)
   const isCellEmpty = (row: number, col: number): boolean => {
     const isReserved = ICON_ADD_POSITIONS.some(pos => pos.row === row && pos.col === col);
     if (isReserved) return false;
@@ -60,7 +51,7 @@ const Board: React.FC = () => {
     return !isOccupied;
   };
 
-  // Busca todas las celdas vacías y devuelve una posición aleatoria entre ellas
+  // Encuentra una celda vacía al azar
   const findEmptyCell = (): { row: number; col: number } | null => {
     const availableCells: { row: number; col: number }[] = [];
     for (let row = 0; row < ROWS; row++) {
@@ -77,20 +68,20 @@ const Board: React.FC = () => {
     return null;
   };
 
-  // Al hacer clic en uno de los iconos fijos, se agrega un nuevo icono draggable del tipo correspondiente en una celda vacía aleatoria
-  const handleIconAddClick = (type: "A" | "B") => {
+  // Al hacer clic en IconAdd, se agrega un nuevo icono draggable con el emoji base
+  const handleIconAddClick = (type: "A" | "B", baseEmoji: string) => {
     const emptyCell = findEmptyCell();
     if (emptyCell) {
       setDraggableIcons([
         ...draggableIcons,
-        { row: emptyCell.row, col: emptyCell.col, type, phase: 0 }
+        { row: emptyCell.row, col: emptyCell.col, type, symbol: baseEmoji }
       ]);
     } else {
       console.log("No hay celdas vacías disponibles");
     }
   };
 
-  // Guarda el índice del icono arrastrado en el dataTransfer para identificarlo en el drop
+  // Guarda el índice del icono arrastrado en el dataTransfer
   const handleIconDragStart = (index: number) => (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData("iconIndex", index.toString());
   };
@@ -100,9 +91,8 @@ const Board: React.FC = () => {
     e.preventDefault();
   };
 
-  // Maneja el evento drop en una celda:
-  // - Si la celda está vacía, mueve el icono arrastrado a esa posición.
-  // - Si la celda ya contiene un icono del mismo tipo y fase, se fusionan (fase incrementada y se elimina el icono arrastrado).
+  // Maneja el drop en una celda: si hay iconos iguales se fusionan haciendo una llamada a la API,
+  // de lo contrario se mueve el icono a la nueva posición
   const handleDrop = (row: number, col: number) => (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const iconIndexStr = e.dataTransfer.getData("iconIndex");
@@ -111,28 +101,48 @@ const Board: React.FC = () => {
       return;
     }
 
-    // Buscamos si ya hay un icono draggable en la celda destino
+    // Buscar si ya hay un icono draggable en la celda destino
     const targetIndex = draggableIcons.findIndex(icon => icon.row === row && icon.col === col);
 
     if (targetIndex !== -1 && targetIndex !== draggedIndex) {
       const draggedIcon = draggableIcons[draggedIndex];
       const targetIcon = draggableIcons[targetIndex];
 
-      // Si ambos iconos son del mismo tipo y tienen la misma fase, se fusionan
-      if (draggedIcon.type === targetIcon.type && draggedIcon.phase === targetIcon.phase) {
-        setDraggableIcons(prev => {
-          const newIcons = [...prev];
-          // Incrementamos la fase del icono destino
-          newIcons[targetIndex] = { ...newIcons[targetIndex], phase: newIcons[targetIndex].phase + 1 };
-          // Eliminamos el icono arrastrado
-          newIcons.splice(draggedIndex, 1);
-          return newIcons;
-        });
+      // Si ambos iconos tienen el mismo tipo y símbolo, se fusionan llamando a la API
+      if (draggedIcon.type === targetIcon.type && draggedIcon.symbol === targetIcon.symbol) {
+        fetch(`http://192.168.11.100:8080/api/v1/emojis?emoji=${encodeURIComponent(targetIcon.symbol)}`)
+  .then(response => response.text())
+  .then(html => {
+    // Parseamos la respuesta HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    // Suponemos que el emoji es el primer nodo de texto dentro del body
+    const emojiText = doc.body.childNodes[0]?.textContent?.trim();
+    if (emojiText) {
+      setDraggableIcons(prev => {
+        const newIcons = [...prev];
+        // Ajustamos el índice del icono target según la posición del arrastrado
+        const updatedTargetIndex = draggedIndex < targetIndex ? targetIndex - 1 : targetIndex;
+        // Eliminamos el icono arrastrado
+        newIcons.splice(draggedIndex, 1);
+        // Actualizamos el icono fusionado con el nuevo emoji extraído
+        newIcons[updatedTargetIndex] = { ...newIcons[updatedTargetIndex], symbol: emojiText };
+        return newIcons;
+      });
+    } else {
+      console.error("No se encontró el emoji en la respuesta de la API");
+    }
+  })
+  .catch(error => {
+    console.error("Error al fusionar iconos:", error);
+  });
+
+
         return;
       }
       return;
     } else if (targetIndex === -1) {
-      // Si la celda está vacía, movemos el icono arrastrado
+      // Si la celda está vacía, se mueve el icono
       setDraggableIcons(prev => {
         const newIcons = [...prev];
         newIcons[draggedIndex] = { ...newIcons[draggedIndex], row, col };
@@ -148,23 +158,25 @@ const Board: React.FC = () => {
     for (let col = 0; col < COLS; col++) {
       let cellContent: React.ReactNode = null;
 
-      // Si la celda es una de las reservadas para IconAdd, mostramos el icono fijo correspondiente a su tipo
+      // Si la celda es de IconAdd, se muestra el botón fijo con el emoji base correspondiente
       const iconAddData = ICON_ADD_POSITIONS.find(pos => pos.row === row && pos.col === col);
       if (iconAddData) {
+        // Se define el emoji base según el tipo; puedes modificar estos valores si lo requieres
+        const baseEmoji = iconAddData.type === "A" ? "💧" : "🔥";
         cellContent = (
           <IconAdd
-            symbol={iconAddData.type === "A" ? "🌱" : "🔋"}
-            onClick={() => handleIconAddClick(iconAddData.type)}
+            symbol={baseEmoji}
+            onClick={() => handleIconAddClick(iconAddData.type, baseEmoji)}
           />
         );
       } else {
-        // Verificamos si hay un icono draggable en la celda
+        // Se verifica si hay un icono draggable en la celda
         const iconIndex = draggableIcons.findIndex(icon => icon.row === row && icon.col === col);
         if (iconIndex !== -1) {
           const iconData = draggableIcons[iconIndex];
           cellContent = (
             <Icon
-              symbol={getIconSymbol(iconData.type, iconData.phase)}
+              symbol={iconData.symbol}
               onDragStart={handleIconDragStart(iconIndex)}
             />
           );
