@@ -89,8 +89,8 @@ function afegirProducte(productName, platform) {
         if (gameName && gamePlatform) {
             const newGame = {
                 nom: gameName,
-                genere: "Unknown", // Default genre
-                any: new Date().getFullYear(), // Current year as default
+                genere: "Unknown",
+                any: new Date().getFullYear(),
                 tipus: "Videojoc",
                 plataforma: gamePlatform
             };
@@ -102,8 +102,8 @@ function afegirProducte(productName, platform) {
         // Handle Pel·licula
         const newMovie = {
             nom: value,
-            genere: "Unknown", // Default genre
-            any: new Date().getFullYear(), // Current year as default
+            genere: "Unknown",
+            any: new Date().getFullYear(),
             tipus: "Pel·licula",
             director: "" // Optional field
         };
